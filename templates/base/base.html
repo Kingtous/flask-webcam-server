@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <!-- Materialize 框架 -->
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/materialize.min.css') }}">
+        <title>{% block title %}{% endblock %} - Kingtous Server</title>
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    {% endblock %}
+</head>
+<body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/materialize.min.js') }}"></script>
+<div id="content">
+    {% block nav %}
+        <nav>
+            <div class="nav-wrapper">
+                <div class="container">
+                    <a href="#" class="brand-logo">Coder Server</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="#">首页</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    {% endblock %}
+    {% block content %}{% endblock %}
+</div>
+<div id="footer">
+    {% block  footer %}
+    {% endblock %}
+</div>
+</body>
+</html>
