@@ -4,9 +4,10 @@
     {% block head %}
         <!--Import Google Icon Font-->
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
         <!-- Materialize 框架 -->
         <link rel="stylesheet" href="{{ url_for('static',filename='css/materialize.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/aos.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css') }}">
         <title>{% block title %}{% endblock %} - Kingtous Server</title>
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -15,14 +16,17 @@
 <body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="{{ url_for('static',filename='js/materialize.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/aos.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/download.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/base.js') }}"></script>
 <div id="content">
     {% block nav %}
         <nav>
             <div class="nav-wrapper">
                 <div class="container">
-                    <a href="#" class="brand-logo">Coder Server</a>
+                    <a href="#" class="brand-logo" >家庭监控系统</a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="#">首页</a></li>
+                        <li><a href="/">首页</a></li>
                     </ul>
                 </div>
             </div>
@@ -30,9 +34,21 @@
     {% endblock %}
     {% block content %}{% endblock %}
 </div>
-<div id="footer">
+<footer class="page-footer" data-aos="fade-up">
     {% block  footer %}
+        <div class="row" >
+            <div class="col s12 m6" >
+                <h6 class="white-text">2020 Kingtous' Web</h6>
+                <h6 class="white-text">该页面仅用于家庭监控测试，任何其他或组织商业化使用本项目，均追究其法律责任！</h6>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2020 Copyright Kingtous
+                <a class="grey-text text-lighten-4 right" href="/">回到主页</a>
+            </div>
+        </div>
     {% endblock %}
-</div>
+</footer>
 </body>
 </html>

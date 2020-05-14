@@ -22,14 +22,10 @@ SQLBase: DeclarativeMeta = Union[DeclarativeMeta]
 SQLEngine: Engine = Union[Engine]
 SQLSessionMaker: sessionmaker = Union[sessionmaker]
 SQLSession: scoped_session = Union[scoped_session]
-# 邮件系统配置
-mail_manager: Mail = Union[None, Mail]
-MAIL_SERVER = os.environ.get("MAIL_SERVER")
-MAIL_PORT: int = int(os.environ.get("MAIL_PORT"))
-MAIL_USE_TLS: bool = True if os.environ.get("MAIL_USE_TLS") == 'True' else False
-MAIL_USE_SSL: bool = True if os.environ.get("MAIL_USE_SSL") == 'True' else False
-MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
-MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
+
+cam_base_url = os.environ.get("cam_base_url")
+action_cam_stream = cam_base_url + os.environ.get("action_cam_stream")
+action_cam_snap = cam_base_url + os.environ.get("action_cam_snap")
 # 缓存
 cache: Cache = Union[None, Cache]
 # 用户role

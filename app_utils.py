@@ -44,9 +44,8 @@ class AppUtils:
                                        echo=False)
         conf.SQLSessionMaker = sessionmaker(bind=conf.SQLEngine)
         conf.SQLSession = scoped_session(conf.SQLSessionMaker)  # scoped_session保证线程安全
-        # 初始化邮件系统
-        AppUtils.init_mail(flask_app)
         # 必须import database_models初始化数据库各类!
+        import models.models
         try:
             conf.database.create_all()
         except Exception as e:
@@ -74,17 +73,6 @@ class AppUtils:
             # Cf.mail_manager.send(message)
             # print("已发送测试邮件")
             pass
-
-    @staticmethod
-    def init_mail(app):
-        app.config['MAIL_SERVER'] = conf.MAIL_SERVER
-        app.config['MAIL_PORT'] = conf.MAIL_PORT
-        app.config['MAIL_USE_TLS'] = conf.MAIL_USE_TLS
-        app.config['MAIL_USERNAME'] = conf.MAIL_USERNAME
-        app.config['MAIL_PASSWORD'] = conf.MAIL_PASSWORD
-        app.config['MAIL_USE_SSL'] = conf.MAIL_USE_SSL
-        app.config['MAIL_DEFAULT_SENDER'] = conf.MAIL_USERNAME
-        conf.mail_manager = Mail(app)
 
     @staticmethod
     def get_network_url(local_url):
