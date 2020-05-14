@@ -7,32 +7,37 @@
 
 {% block content %}
     <div class="container">
-        <div class="col s12 m4" data-aos="fade-up">
-            <div class="card" style="margin-top: 30px" data-aos="fade-right" data-aos-delay="100">
-                <div class="card-image">
-                    <img src="/static/images/camera.jpg" height="300" alt="null" style="object-fit: cover">
-                    <span class="card-title">查看快照</span>
-                </div>
-                <div class="card-content">
-                    <p>查看截取照片</p>
-                </div>
-                <div class="card-action">
-                    <a href={{ url_for("index.snapshot") }}>进入</a>
+        <div class="row s12 m12" data-aos="fade-up">
+            <div class="col s6 m6">
+                <div class="card" style="margin-top: 30px" data-aos="fade-right" data-aos-delay="100">
+                    <div class="card-image">
+                        <img src="/static/images/camera.jpg" height="300" alt="null" style="object-fit: cover">
+                        <span class="card-title">查看快照</span>
+                    </div>
+                    <div class="card-content">
+                        <p>查看截取照片</p>
+                    </div>
+                    <div class="card-action">
+                        <a href={{ url_for("index.snapshot") }}>进入</a>
+                    </div>
                 </div>
             </div>
 
-            <div class="card" style="margin-top: 30px" data-aos="fade-right" data-aos-delay="100">
-                <div class="card-image">
-                    <img src="/static/images/video.jpg" height="300" alt="null" style="object-fit: cover">
-                    <span class="card-title">实时监控</span>
-                </div>
-                <div class="card-content">
-                    <p>进入实时监控</p>
-                </div>
-                <div class="card-action">
-                    <a href={{ url_for("index.stream") }}>进入</a>
+            <div class="col s6 m6">
+                <div class="card" style="margin-top: 30px" data-aos="fade-right" data-aos-delay="100">
+                    <div class="card-image">
+                        <img src="/static/images/video.jpg" height="300" alt="null" style="object-fit: cover">
+                        <span class="card-title">实时监控</span>
+                    </div>
+                    <div class="card-content">
+                        <p>进入实时监控</p>
+                    </div>
+                    <div class="card-action">
+                        <a href={{ url_for("index.stream") }}>进入</a>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 {% endblock %}
