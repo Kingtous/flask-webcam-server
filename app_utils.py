@@ -23,7 +23,7 @@ class AppUtils:
     @staticmethod
     def init(flask_app):
         # 增加CORS跨域支持
-        CORS(flask_app)
+        # CORS(flask_app)
         # APP Server Banner
         print(pyfiglet.figlet_format("Kingtous Web"))
         print("Web Exp By Kingtous")
@@ -35,22 +35,42 @@ class AppUtils:
         flask_app.config['SQLALCHEMY_DATABASE_URI'] = conf.base_mysql_connection_url
         flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
         flask_app.config["SQLALCHEMY_ECHO"] = False
-        db = SQLAlchemy(flask_app)
-        conf.database = db
-        conf.SQLBase = declarative_base()
-        conf.SQLEngine = create_engine(conf.base_mysql_connection_url,
-                                       pool_recycle=7200,
-                                       pool_size=100,
-                                       echo=False)
-        conf.SQLSessionMaker = sessionmaker(bind=conf.SQLEngine)
-        conf.SQLSession = scoped_session(conf.SQLSessionMaker)  # scoped_session保证线程安全
+        # db = SQLAlchemy(flask_app)
+        # conf.database = db
+        # conf.SQLBase = declarative_base()
+        # conf.SQLEngine = create_engine(conf.base_mysql_connection_url,
+        #                                pool_recycle=7200,
+        #                                pool_size=100,
+        #                                echo=False)
+        # conf.SQLSessionMaker = sessionmaker(bind=conf.SQLEngine)
+        # conf.SQLSession = scoped_session(conf.SQLSessionMaker)  # scoped_session保证线程安全
         # 必须import database_models初始化数据库各类!
-        import models.models
-        try:
-            conf.database.create_all()
-        except Exception as e:
-            sys.stderr.write('Database Connect Error: %s\n' % e.args[0])
-            exit(0)
+        # import models.models
+        # try:
+        #     conf.database.create_all()
+        # except Exception as e:
+        #     sys.stderr.write('Database Connect Error: %s\n' % e.args[0])
+        #     exit(0)
+
+        @conf.auth.verify_password
+        def authenticate(username_or_token, password):
+            # # first try to authenticate by token
+            # # t1 = time.clock()
+            # user = User.verify_auth_token(username_or_token)
+            # if not user:
+            #     # 现在不支持用户名密码登录，严重影响时间
+            #     # try to authenticate with username/password
+            #     # user = User.query.filter_by(username=username_or_token).first()
+            #     # if not user or not user.verify_password_only(password):
+            #     #     # print("鉴权花费：%f" % (time.clock() - t1))
+            #     #     return False
+            #     return False
+            # g.user = user
+            # # print("鉴权花费：%f" % (time.clock() - t1))
+            if username_or_token == os.getenv('baseauth_username') and password == os.getenv('baseauth_password'):
+                return True
+            else:
+                return False
 
         # 未登录回调
         @conf.auth.error_handler
